@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+    mysql:
+        build:
+            context: "build/mysql"
+        restart: always
+#        volumes:
+#        - "./data/mysql/:/var/lib/mysql/"
+        environment:
+            - MYSQL_OBSERVIUM_DATABASE
+            - MYSQL_OBSERVIUM_USERNAME
+            - MYSQL_OBSERVIUM_PASSWORD
+
+    observium:
+        build:
+            context: "build/observium"
+        depends_on: 
+            - mysql
+        restart: always
+        ports:
+            - "80:80"
+#        volumes:
+#            - "./data/observium/app:/opt/observium/"
+#            - "./data/observium/logs:/opt/observium/logs"
+#            - "./data/observium/rrd:/opt/observium/rrd"
+        environment:
+            - MYSQL_OBSERVIUM_DATABASE
+            - MYSQL_OBSERVIUM_USERNAME
+            - MYSQL_OBSERVIUM_PASSWORD
+            - OBSERVIUM_ADMIN_USERNAME
+            - OBSERVIUM_ADMIN_PASSWORD
