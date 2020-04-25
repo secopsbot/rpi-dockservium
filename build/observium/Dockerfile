@@ -41,7 +41,7 @@ RUN chmod 700 /etc/crontabs/root
 ADD files/etc/supervisord.conf /etc/supervisord.conf
 
 # apk > Clean-up
-#RUN rm  -rf /tmp/* /var/cache/apk/*
+RUN rm  -rf /tmp/* /var/cache/apk/*
 
 # Add observium bootstrap script
 ADD files/observium-bootstrap.sh /opt/observium-bootstrap.sh
