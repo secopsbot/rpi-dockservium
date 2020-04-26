@@ -1,6 +1,6 @@
 FROM alpine
 
-RUN apk -U upgrade
+RUN apk update && apk upgrade
 RUN apk add supervisor incron
 RUN apk add subversion rrdtool mtr imagemagick graphviz fping python nmap
 RUN apk add apache2 mysql-client php7-mysqli php7-json php7-pear php7-pecl-mcrypt php7-ctype php7-session php7-apache2 ttf-dejavu
